@@ -21,9 +21,11 @@ if(isset($_GET["submit"])){
         echo "<meta http-equiv=refresh content='0; url=index.php?page=3&message=3'>";exit;
     }
 
+
+
    $pattern_pass='/^(?=.*[0-9])(?=.*[A-Z])(?=.*[a-z]).{8,20}$/';
    $time = time();
-   $salt = md5( $time);
+   $salt = md5($time);
    if($password1 == $password2){
        if(preg_match($pattern_pass, $password1)){
            $Fpassword = md5($password1);
@@ -35,6 +37,9 @@ if(isset($_GET["submit"])){
    else{
        echo "<meta http-equiv=refresh content='0; url=index.php?page=3&message=1'>";exit;
    }
+
+
+
  
    $pass = $Fpassword.$salt;
    if(!filter_var($email, FILTER_VALIDATE_EMAIL) === false){
