@@ -1,6 +1,30 @@
-                                <div class="user-data">
+<?php 
+
+
+    if(isset($_GET["userid"])){
+
+        $sql = "DELETE FROM utilizadores WHERE id='" . $_GET["userid"] . "'";
+
+         if ($mysqli->query($sql) === TRUE) {
+             echo "<meta http-equiv=refresh content='0; url=index.php?page=1&message=8'>";exit;	
+            } else {
+                echo "<meta http-equiv=refresh content='0; url=index.php?page=1&message=7'>";exit;	
+            }
+
+    }
+
+?>
+                      
+                      
+                      
+                      
+                      
+                      <div class="user-data">
                                     <h3 class="title-3 m-b-30">
                                         <i class="zmdi zmdi-account-calendar"></i>user data</h3>
+                                        <?php 
+                                                require("messages.php");
+                                        ?>
                                     <div class="filters m-b-45">
                                         <div class="rs-select2--dark rs-select2--md m-r-10 rs-select2--border">
                                             <select class="js-select2" name="property">
@@ -23,6 +47,8 @@
                                         <div class="form-header" style="display: inline">
                                         <input id="myInput" onkeyup="myFunction()" class="au-input au-input--xl" type="text" name="search" placeholder="Search for datas &amp; reports..." />
                                         </div>
+
+                                       
 
                                         <div style="float: right; display: inline; padding-left: 15px">
                                             <button type="button" class="btn btn-primary"><a href="?page=3" style="color: white">+ Add User</a></button>
@@ -86,12 +112,13 @@
                                                         </td>
                                                         <td>
                                                             <div class="table-data-feature">
-                                                                <button class="item" data-toggle="tooltip" data-placement="top" title="Inspect">
-                                                                    <i class="zmdi zmdi-eye"></i>
-                                                                </button>
-                                                                <button class="item" data-toggle="tooltip" data-placement="top" title="Edit">
-                                                                    <i class="zmdi zmdi-edit"></i>
-                                                                </button>
+
+                                                                <a href="?page=2&userid=<?php echo $row["id"]; ?>">
+                                                                    <button class="item" data-toggle="tooltip" data-placement="top" title="Edit">
+                                                                        <i class="zmdi zmdi-edit"></i>
+                                                                    </button>
+                                                                 </a>
+
                                                                 <?php  
                                                             
                                                             if($row['tipo'] == "User"){
@@ -99,9 +126,14 @@
                                                             
                                                            
                                                             ?>
-                                                                <button class="item" data-toggle="tooltip" data-placement="top" title="Delete">
-                                                                    <i class="zmdi zmdi-delete"></i>
-                                                                </button>
+
+                                                                <a href="?page=1&userid=<?php echo $row["id"]; ?>">
+
+                                                                   <button class="item" data-toggle="tooltip" data-placement="top" title="Delete">
+                                                                        <i class="zmdi zmdi-delete"></i>
+                                                                    </button>
+                                                                </a>
+                                                            
                                                                 <?php } ?>
                                                             </div>
                                                         </td>

@@ -1,5 +1,7 @@
 <!DOCTYPE html>
-<?php require("bd.php");?>
+<?php require("bd.php");
+    
+?>
 <html lang="en">
 
 <head>
@@ -9,7 +11,7 @@
     <meta name="description" content="au theme template">
     <meta name="author" content="Hau Nguyen">
     <meta name="keywords" content="au theme template">
-
+    <?php require("session.php"); ?>
     <!-- Title Page-->
     <title>Dashboard</title>
 

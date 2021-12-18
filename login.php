@@ -1,3 +1,36 @@
+<?php
+require("bd.php");
+
+if(isset($_GET["submit"])){
+
+session_start();
+
+$username = $_POST['username'];
+$pass = $_POST['password'];
+// A variavel $result pega as varias $login e $senha, faz uma
+//pesquisa na tabela de usuarios
+$result = mysql_query("SELECT * FROM utilizadores WHERE nome = '$login' AND pass= '$senha'");
+
+
+if(mysql_num_rows ($result) > 0 )
+{
+    echo $result;
+    /*
+$_SESSION['username'] = $username;
+$_SESSION['password'] = $password;
+header('location:index.php');*/
+}
+
+else{
+  unset ($_SESSION['login']);
+  unset ($_SESSION['senha']);
+  header('location:login.php');
+
+  }
+}
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -47,10 +80,10 @@
                             </a>
                         </div>
                         <div class="login-form">
-                            <form action="" method="post">
+                            <form action="login2.php" method="post">
                                 <div class="form-group">
-                                    <label>Email Address</label>
-                                    <input class="au-input au-input--full" type="email" name="email" placeholder="Email">
+                                    <label>Username</label>
+                                    <input class="au-input au-input--full" type="text" name="username" placeholder="Username">
                                 </div>
                                 <div class="form-group">
                                     <label>Password</label>
@@ -64,7 +97,7 @@
                                         <a href="#">Forgotten Password?</a>
                                     </label>
                                 </div>
-                                <button class="au-btn au-btn--block au-btn--green m-b-20" type="submit">sign in</button>
+                                <input type="submit" class="au-btn au-btn--block au-btn--green m-b-20" value="Sign In" name="submit"/>
                                 <div class="social-login-content">
                                     <div class="social-button">
                                         <button class="au-btn au-btn--block au-btn--blue m-b-20">sign in with facebook</button>

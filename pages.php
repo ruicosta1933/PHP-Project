@@ -8,7 +8,7 @@ if(!isset($_GET['page'])){
         require "customers.php";
     break;
         case 2:
-        require "admins.php";
+        require "updateUser.php";
     break;
         case 3:
         require "addUser.php";

@@ -11,21 +11,12 @@
             <a class="js-arrow" href="index.php">
                         <i class="fas fa-tachometer-alt"></i>Home</a>
 
-</li>
-
-
-                <li class="has-sub">
-                    <a class="js-arrow" href="#">
+            </li>
+            <li>    
+            <a class="js-arrow" href="?page=1">
                         <i class="fas fa-users"></i>Users</a>
-                    <ul class="list-unstyled navbar__sub-list js-sub-list">
-                        <li>
-                            <a href="?page=1">Customers</a>
-                        </li>
-                        <li>
-                            <a href="?page=2">Admins</a>
-                        </li>
-                    </ul>
-                </li>
+
+            </li>
 
 
                 <li>
