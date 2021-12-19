@@ -96,6 +96,15 @@ Email already used. Please, try another one.
         </button>
     </div>';
     break;
+    case 10:
+        echo '<div class="sufee-alert alert with-close alert-danger alert-dismissible fade show">
+<span class="badge badge-pill badge-danger">Failed</span>
+Image field is required. Please upload an image.
+<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+</button>
+</div>';
+    break;
 
 
 }

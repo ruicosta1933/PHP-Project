@@ -13,7 +13,7 @@
     <meta name="keywords" content="au theme template">
     <?php require("session.php"); ?>
     <!-- Title Page-->
-    <title>Dashboard</title>
+    <title>Pelourinho</title>
 
     <!-- Fontfaces CSS-->
     <link href="css/font-face.css" rel="stylesheet" media="all">

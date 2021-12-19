@@ -1,34 +1,4 @@
-<?php
-require("bd.php");
 
-if(isset($_GET["submit"])){
-
-session_start();
-
-$username = $_POST['username'];
-$pass = $_POST['password'];
-// A variavel $result pega as varias $login e $senha, faz uma
-//pesquisa na tabela de usuarios
-$result = mysql_query("SELECT * FROM utilizadores WHERE nome = '$login' AND pass= '$senha'");
-
-
-if(mysql_num_rows ($result) > 0 )
-{
-    echo $result;
-    /*
-$_SESSION['username'] = $username;
-$_SESSION['password'] = $password;
-header('location:index.php');*/
-}
-
-else{
-  unset ($_SESSION['login']);
-  unset ($_SESSION['senha']);
-  header('location:login.php');
-
-  }
-}
-?>
 
 
 <!DOCTYPE html>

@@ -16,8 +16,18 @@
                                                 <i class="zmdi zmdi-account-o"></i>
                                             </div>
                                             <div class="text">
-                                                <h2>10368</h2>
-                                                <span>members online</span>
+                                                <h2>
+                                                <?php
+                                                
+                                                $sql_frase=$mysqli->query("Select * from utilizadores") or die ("Erro ao selecionar o home.");
+                                                $count = 0;
+                                                while($row = $sql_frase->fetch_assoc()){
+                                                    $count++;
+                                                }
+                                                echo $count;
+                                                    ?>
+                                                    </h2>
+                                                <span>members</span>
                                             </div>
                                         </div>
                                         <div class="overview-chart">
@@ -34,8 +44,16 @@
                                                 <i class="zmdi zmdi-shopping-cart"></i>
                                             </div>
                                             <div class="text">
-                                                <h2>388,688</h2>
-                                                <span>items solid</span>
+                                                <h2><?php
+                                                
+                                                $sql_frase=$mysqli->query("Select * from produtos") or die ("Erro ao selecionar o home.");
+                                                $count = 0;
+                                                while($row = $sql_frase->fetch_assoc()){
+                                                    $count++;
+                                                }
+                                                echo $count;
+                                                    ?></h2>
+                                                <span>items in stock</span>
                                             </div>
                                         </div>
                                         <div class="overview-chart">

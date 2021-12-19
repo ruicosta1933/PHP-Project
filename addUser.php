@@ -1,16 +1,30 @@
 <?php
 require("bd.php");
-if(isset($_GET["submit"])){
+if(isset($_POST["submit"])){
 
-    $nome = $_GET["name"];
-    $sirName = $_GET["sirname"];
-    $username = $_GET["username"];
-    $address = $_GET["address"];
-    $email = $_GET["email"];
-    $password1 = $_GET["password1"];
-    $password2 = $_GET["password2"];
-    $role = $_GET["role"];
+    $nome = $_POST["name"];
+    $sirName = $_POST["sirname"];
+    $username = $_POST["username"];
+    $address = $_POST["address"];
+    $email = $_POST["email"];
+    $password1 = $_POST["password1"];
+    $password2 = $_POST["password2"];
+    $role = $_POST["role"];
     
+
+    if (count($_FILES) > 0) {
+        if (is_uploaded_file($_FILES['file']['tmp_name'])) {
+            $imageData = addslashes(file_get_contents($_FILES['file']['tmp_name']));
+            $imageProperties = getimageSize($_FILES['file']['tmp_name']);
+        }
+        else {
+            echo "<meta http-equiv=refresh content='0; url=index.php?page=3&message=7'>";exit;
+        }
+    }
+    else {
+        echo "<meta http-equiv=refresh content='0; url=index.php?page=3&message=10'>";exit;
+    }
+
 
     if($role == 1 ){
         $role = "Admin";
@@ -58,7 +72,7 @@ if(isset($_GET["submit"])){
 
             else{
 
-                $sql = "INSERT INTO utilizadores (nome, apelido, username, morada, email, pass, salt, tipo) VALUES ('".$nome."', '".$sirName."', '".$username."', '".$address."', '".$email."', '".$pass."', '".$salt."', '".$role."')";
+                $sql = "INSERT INTO utilizadores (nome, apelido, username, morada, email, pass, salt, tipo, imageType, imageData) VALUES ('".$nome."', '".$sirName."', '".$username."', '".$address."', '".$email."', '".$pass."', '".$salt."', '".$role."', '".$imageProperties['mime']."', '".$imageData."')";
                 
                 if ($mysqli->query($sql) === TRUE) {
                     echo "<meta http-equiv=refresh content='0; url=index.php?page=3&message=6'>";exit;	
@@ -80,7 +94,7 @@ if(isset($_GET["submit"])){
 
                                     <?php require("messages.php"); ?>
 
-                                        <form action="addUser.php">
+                                        <form action="addUser.php" enctype="multipart/form-data"  method="post">
                                         <div class="form-group">
                                                 <div class="input-group">
                                                     
@@ -124,6 +138,17 @@ if(isset($_GET["submit"])){
                                                     <input type="email" id="email3" name="email" class="form-control" Required>
                                                     <div class="input-group-addon">
                                                         <i class="fa fa-envelope"></i>
+                                                    </div>
+                                                    &nbsp; &nbsp;
+
+                                                <div>
+                                                <div class="input-group-addon">Image / Avatar</div>
+                                                </div>
+                                                <div class="col-6 col-md-4">
+                                                    <input type="file" id="file-multiple-input" name="file" multiple="" class="form-control-file">
+                                                </div>
+                                                <div class="input-group-addon">
+                                                        <i class="fa fa-images"></i>
                                                     </div>
                                                 </div>
                                             </div>

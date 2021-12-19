@@ -73,7 +73,16 @@
 
 
                                                 <tbody>
-                                                    
+                                                    <style>
+
+                                                    .imagem{
+                                                        display: flex;
+                                                        height: 90px;
+                                                        width: 90px;
+                                                        border-radius: 50px;
+                                                    }
+
+                                                        </style>
                                                 <?php 
                                             $sql_frase=$mysqli->query("Select * from utilizadores") or die ("Erro ao selecionar o home.");
                                                 
@@ -84,8 +93,14 @@
                                                   
                                                     
                                                     ?>
+                                                    
                                                     <tr class="tr-shadow">
-                                                        <td></td>
+                                                        <td>
+                                                        <div><?php
+                                                        echo '<img class="imagem" src="data:'.$row['imageType'].';base64,'.base64_encode($row['imageData']).'"/>';
+                                                        ?>
+                                                        </div>
+                                                        </td>
                                                         <td>
                                                             <div class="table-data__info">
                                                                 <h6><?php echo $row['nome']?></h6>
@@ -129,7 +144,7 @@
 
                                                                 <a href="?page=1&userid=<?php echo $row["id"]; ?>">
 
-                                                                   <button class="item" data-toggle="tooltip" data-placement="top" title="Delete">
+                                                                   <button class="item" onclick="return confirm('Are you sure you want to Delete?');"  data-toggle="tooltip" data-placement="top" title="Delete">
                                                                         <i class="zmdi zmdi-delete"></i>
                                                                     </button>
                                                                 </a>

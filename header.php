@@ -124,8 +124,14 @@
                                 <div class="account-wrap">
                                     <div class="account-item clearfix js-item-menu">
                                         <div class="image">
-                                            <img src="images/icon/avatar-01.jpg" alt="John Doe" />
+                                        <?php
+                                                        echo '<img src="data:'.$_SESSION['imageType'].';base64,'.base64_encode($_SESSION['imageData']).'"/>';
+                                                        ?>
                                         </div>
+
+
+
+
                                         <div class="content">
                                             <a class="js-acc-btn" href="#"><?php echo $_SESSION['username']; ?></a>
                                         </div>
@@ -133,14 +139,16 @@
                                             <div class="info clearfix">
                                                 <div class="image">
                                                     <a href="#">
-                                                        <img src="images/icon/avatar-01.jpg" alt="John Doe" />
+                                                    <?php
+                                                        echo '<img src="data:'.$_SESSION['imageType'].';base64,'.base64_encode($_SESSION['imageData']).'"/>';
+                                                        ?>
                                                     </a>
                                                 </div>
                                                 <div class="content">
                                                     <h5 class="name">
-                                                        <a href="#">john doe</a>
+                                                        <a href="#"><?php echo $_SESSION['username']; ?></a>
                                                     </h5>
-                                                    <span class="email">johndoe@example.com</span>
+                                                    <span class="email"><?php echo $_SESSION['email']; ?></span>
                                                 </div>
                                             </div>
                                             <div class="account-dropdown__body">
@@ -151,10 +159,6 @@
                                                 <div class="account-dropdown__item">
                                                     <a href="#">
                                                         <i class="zmdi zmdi-settings"></i>Setting</a>
-                                                </div>
-                                                <div class="account-dropdown__item">
-                                                    <a href="#">
-                                                        <i class="zmdi zmdi-money-box"></i>Billing</a>
                                                 </div>
                                             </div>
                                             <div class="account-dropdown__footer">

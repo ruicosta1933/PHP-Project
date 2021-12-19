@@ -8,6 +8,5 @@ if(!isset($_SESSION['username']) && !isset($_SESSION['password'])){
   }
 
 
-$nome = $_SESSION['username'];
 
 ?>
