@@ -1,4 +1,24 @@
+<?php
 
+if(isset($_GET["key"]) && isset($_GET["reset"])){
+    require("bd.php"); 
+
+  $email=$_GET['key'];
+  $pass=$_GET['reset'];
+
+  $select = mysqli_query($mysqli, "SELECT * FROM utilizadores WHERE md5(email)='".$email."'");
+
+ 
+
+
+  if(mysqli_num_rows($select) > 0){
+    while($row=mysqli_fetch_array($select))
+    {
+      $id=$row["id"];
+    }
+    ?>
+
+            
 
 
 <!DOCTYPE html>
@@ -13,7 +33,7 @@
     <meta name="keywords" content="au theme template">
 
     <!-- Title Page-->
-    <title>Login</title>
+    <title>Reset Password</title>
 
     <!-- Fontfaces CSS-->
     <link href="css/font-face.css" rel="stylesheet" media="all">
@@ -50,37 +70,16 @@
                             </a>
                         </div>
                         <div class="login-form">
-                            <form action="login2.php" method="post">
-                                <div class="form-group">
-                                    <label>Username</label>
-                                    <input class="au-input au-input--full" type="text" name="username" placeholder="Username">
-                                </div>
+                            <form action="resetPassword.php?key='<?php echo $_GET["key"];?>'&reset='<?php echo  $_GET["reset"]; ?>'" method="post">
+                            <input type="hidden" name="id" value="<?php echo $id;?>">
                                 <div class="form-group">
                                     <label>Password</label>
-                                    <input class="au-input au-input--full" type="password" name="password" placeholder="Password">
+                                    <input class="au-input au-input--full" type="password" name="password" placeholder="Password"><br><br>
+                                    <label>Confirm Password</label>
+                                    <input class="au-input au-input--full" type="password" name="password2" placeholder="Confirm Password">
                                 </div>
-                                <div class="login-checkbox">
-                                    <label>
-                                        <input type="checkbox" name="remember">Remember Me
-                                    </label>
-                                    <label>
-                                        <a href="forgotPassword.php">Forgotten Password?</a>
-                                    </label>
-                                </div>
-                                <input type="submit" class="au-btn au-btn--block au-btn--green m-b-20" value="Sign In" name="submit"/>
-                                <div class="social-login-content">
-                                    <div class="social-button">
-                                        <button class="au-btn au-btn--block au-btn--blue m-b-20">sign in with facebook</button>
-                                        <button class="au-btn au-btn--block au-btn--blue2">sign in with twitter</button>
-                                    </div>
-                                </div>
+                                <input type="submit" class="au-btn au-btn--block au-btn--green m-b-20" value="Reset Password" name="submit"/>
                             </form>
-                            <div class="register-link">
-                                <p>
-                                    Don't you have account?
-                                    <a href="#">Sign Up Here</a>
-                                </p>
-                            </div>
                         </div>
                     </div>
                 </div>
@@ -117,3 +116,16 @@
 
 </html>
 <!-- end document-->
+
+
+
+
+
+    <?php
+  }
+  else {
+      echo "Algo errado nao deu certo";
+  }
+}
+
+?>

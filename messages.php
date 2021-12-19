@@ -40,12 +40,12 @@ if(!isset($_GET['message'])){
     case 4:
         echo '
         <div class="sufee-alert alert with-close alert-danger alert-dismissible fade show">
-                                                    <span class="badge badge-pill badge-danger">Failed</span>
-                                                    Username already token. Please, try another one.
-                                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                                        <span aria-hidden="true">&times;</span>
-                                                    </button>
-                                                </div>';
+            <span class="badge badge-pill badge-danger">Failed</span>
+            Username already token. Please, try another one.
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>';
     break;
 
     case 5:
