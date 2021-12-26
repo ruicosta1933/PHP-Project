@@ -52,10 +52,8 @@ if(isset($_POST["submit"])){
        echo "<meta http-equiv=refresh content='0; url=index.php?page=3&message=1'>";exit;
    }
 
-
-
- 
    $pass = $Fpassword.$salt;
+
    if(!filter_var($email, FILTER_VALIDATE_EMAIL) === false){
 
             $sql_u = "SELECT * FROM utilizadores WHERE username='$username'";

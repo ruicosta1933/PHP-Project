@@ -105,7 +105,7 @@
                                                             <div class="table-data__info">
                                                                 <h6><?php echo $row['nome']?></h6>
                                                                 <span>
-                                                                    <a href="#"><?php echo $row['email']?></a>
+                                                                    <a href="mailto:<?php echo $row['email']?>"><?php echo $row['email']?></a>
                                                                 </span>
                                                             </div>
                                                         </td>
