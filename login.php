@@ -53,11 +53,26 @@
                             <form action="login2.php" method="post">
                                 <div class="form-group">
                                     <label>Username</label>
-                                    <input class="au-input au-input--full" type="text" name="username" placeholder="Username">
+                                    <input class="au-input au-input--full" type="text" name="username" value="<?php if(isset($_COOKIE["username"])) { echo $_COOKIE["username"]; } ?>" placeholder="Username">
                                 </div>
                                 <div class="form-group">
                                     <label>Password</label>
-                                    <input class="au-input au-input--full" type="password" name="password" placeholder="Password">
+                                    <input class="au-input au-input--full" type="password" value="<?php if(isset($_COOKIE["password"])) { echo $_COOKIE["password"]; }?>" name="password" placeholder="Password" id="myInput">
+                                    <div style="display: flex; float:right">
+                                        <label>
+                                            <input type="checkbox" onclick="myFunction()"> Show Password
+                                        </label>
+                                        <script>
+                                                    function myFunction() {
+                                                    var x = document.getElementById("myInput");
+                                                    if (x.type === "password") {
+                                                        x.type = "text";
+                                                    } else {
+                                                        x.type = "password";
+                                                    }
+                                                    }
+                                        </script>
+                                    </div><br><br>
                                 </div>
                                 <div class="login-checkbox">
                                     <label>

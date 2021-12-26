@@ -157,7 +157,7 @@
                                                         <i class="zmdi zmdi-account"></i>Account</a>
                                                 </div>
                                                 <div class="account-dropdown__item">
-                                                    <a href="#">
+                                                    <a  href="?page=2&userid=<?php echo $_SESSION["id"]; ?>">
                                                         <i class="zmdi zmdi-settings"></i>Setting</a>
                                                 </div>
                                             </div>
