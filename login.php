@@ -76,7 +76,7 @@
                                 </div>
                                 <div class="login-checkbox">
                                     <label>
-                                        <input type="checkbox" name="remember">Remember Me
+                                        <input type="checkbox" name="remember" <?php if(isset($_COOKIE)){ echo "checked";}?> >Remember Me
                                     </label>
                                     <label>
                                         <a href="forgotPassword.php">Forgotten Password?</a>
