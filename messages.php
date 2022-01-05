@@ -123,7 +123,25 @@ Image field is required. Please upload an image.
         </button>
     </div>';
     break;
-    
+    case 13:
+        echo '<div class="sufee-alert alert with-close alert-success alert-dismissible fade show">
+        <span class="badge badge-pill badge-success">Success</span>
+        New user updated successfully.
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>';
+    break;
+    case 14:
+        echo '<div class="sufee-alert alert with-close alert-success alert-dismissible fade show">
+        <span class="badge badge-pill badge-success">Success</span>
+        You have been registered successfuly.
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>';
+    break;
+
 
 
 }

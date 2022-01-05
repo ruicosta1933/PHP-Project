@@ -5,6 +5,6 @@ session_unset();
 // destroy the session
 session_destroy();
 
-header('location:login.php?message=logout');
+header('location:../loja/index.php');
 
 ?>

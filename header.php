@@ -129,9 +129,6 @@
                                                         ?>
                                         </div>
 
-
-
-
                                         <div class="content">
                                             <a class="js-acc-btn" href="#"><?php echo $_SESSION['username']; ?></a>
                                         </div>

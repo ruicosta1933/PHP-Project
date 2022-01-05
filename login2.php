@@ -40,14 +40,13 @@ if(mysqli_num_rows($result) > 0 ){
         header('location:index.php?message=2');
        }
        else{
-    // remove all session variables
-    session_unset();
-    
-    // destroy the session
-    session_destroy();
-    
-    header('location: http://istudent.ipt.pt/~balegria/nhecos1.jpg');
-     
+        $_SESSION['id'] = $row["id"];
+        $_SESSION['imageData'] = $row["imageData"];
+        $_SESSION['imageType'] = $row["imageType"];
+        $_SESSION['email'] = $row["email"];
+        $_SESSION['tipo'] = $row["tipo"];
+        $_SESSION['username'] = $username;
+        header('location:../loja/index.php?message=LOGOU');
        }
     }
     else {
