@@ -13,6 +13,9 @@ if(!isset($_GET['page'])){
         case 3:
         require "addUser.php";
     break;
+    case 4:
+        require "readtxt.php";
+    break;
 
         default:
         include "main.php";

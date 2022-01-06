@@ -1,6 +1,6 @@
 <?php
 
-
+date_default_timezone_set('Europe/Lisbon');
 
 if(!isset($_GET['message'])){
     $_GET['message']=0;
@@ -66,6 +66,15 @@ Email already used. Please, try another one.
             <span aria-hidden="true">&times;</span>
         </button>
     </div>';
+
+    $log_string = date("Y-m-d")." | ".$_SESSION["username"]." adicionou um utilizador às ".date("h:i:s")."\n\n============================================================================== \n\n";
+    $log_file = "logs.txt";
+
+    $handle = fopen($log_file, "a") or die ('Something went wrong !');
+
+    fwrite($handle, $log_string);
+    fclose($handle);
+
     break;
 
     case 7:
@@ -86,6 +95,13 @@ Email already used. Please, try another one.
             <span aria-hidden="true">&times;</span>
         </button>
     </div>';
+    $log_string = date("Y-m-d")." | ".$_SESSION["username"]." apagou um utilizador às ".date("h:i:s")."\n\n============================================================================== \n\n";
+    $log_file = "logs.txt";
+
+    $handle = fopen($log_file, "a") or die ('Something went wrong !');
+
+    fwrite($handle, $log_string);
+    fclose($handle);
     break;
     case 9:
         echo '<div class="sufee-alert alert with-close alert-success alert-dismissible fade show">
@@ -95,6 +111,13 @@ Email already used. Please, try another one.
             <span aria-hidden="true">&times;</span>
         </button>
     </div>';
+    $log_string = date("Y-m-d")." | ".$_SESSION["username"]." atualizou um utilizador às ".date("h:i:s")."\n\n============================================================================== \n\n";
+    $log_file = "logs.txt";
+
+    $handle = fopen($log_file, "a") or die ('Something went wrong !');
+
+    fwrite($handle, $log_string);
+    fclose($handle);
     break;
     case 10:
         echo '<div class="sufee-alert alert with-close alert-danger alert-dismissible fade show">
@@ -113,7 +136,15 @@ Image field is required. Please upload an image.
             <span aria-hidden="true">&times;</span>
         </button>
     </div>';
+    $log_string = date("Y-m-d")." | ".$_SESSION["username"]." atualizou a sua palavra-passe às ".date("h:i:s")."\n\n============================================================================== \n\n";
+    $log_file = "logs.txt";
+
+    $handle = fopen($log_file, "a") or die ('Something went wrong !');
+
+    fwrite($handle, $log_string);
+    fclose($handle);
     break;
+    
     case 12:
         echo ' <div class="sufee-alert alert with-close alert-warning alert-dismissible fade show">
         <span class="badge badge-pill badge-warning">Oops</span>
@@ -131,6 +162,13 @@ Image field is required. Please upload an image.
             <span aria-hidden="true">&times;</span>
         </button>
     </div>';
+    $log_string = date("Y-m-d")." | ".$_SESSION["username"]." atualizou um utilizador às ".date("h:i:s")."\n\n============================================================================== \n\n";
+    $log_file = "logs.txt";
+
+    $handle = fopen($log_file, "a") or die ('Something went wrong !');
+
+    fwrite($handle, $log_string);
+    fclose($handle);
     break;
     case 14:
         echo '<div class="sufee-alert alert with-close alert-success alert-dismissible fade show">

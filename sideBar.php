@@ -20,8 +20,8 @@
 
 
                 <li>
-                    <a href="chart.html">
-                        <i class="fas fa-box"></i>Products</a>
+                    <a href="?page=4">
+                        <i class="fas fa-box"></i>Logs</a>
                 </li>
                
             </ul>

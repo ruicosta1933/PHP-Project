@@ -157,6 +157,10 @@
                                                     <a  href="?page=2&userid=<?php echo $_SESSION["id"]; ?>">
                                                         <i class="zmdi zmdi-settings"></i>Setting</a>
                                                 </div>
+                                                <div class="account-dropdown__item">
+                                                    <a  href="../index.php">
+                                                        <i class="zmdi zmdi-airplay"></i>FrontEnd</a>
+                                                </div>
                                             </div>
                                             <div class="account-dropdown__footer">
                                                 <a href="logout.php">
