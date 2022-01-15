@@ -1,6 +1,4 @@
-<?php if(isset($_COOKIE["password"]) && isset($_COOKIE["password"])){
-    echo "<meta http-equiv=refresh content='0; url=login2.php'>";exit;
-} ?>
+
 
 
 <!DOCTYPE html>

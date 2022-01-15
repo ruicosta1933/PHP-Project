@@ -83,11 +83,11 @@ if(isset($_POST["submit"])){
                     else {
                         echo "<meta http-equiv=refresh content='0; url=index.php?page=2&userid=".$id."&message=7'>";exit;	
                     }
-        else {
-            $boolImage = FALSE;
-    }
+       
 }
-
+else {
+    $boolImage = FALSE;
+}
     if($role == 1 ){
         $role = "Admin";
     } else if($role == 2){
