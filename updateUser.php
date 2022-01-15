@@ -3,9 +3,9 @@ require("bd.php");
 
 if(isset($_POST["updatePassword"]) && $_POST["updatePassword"]=="UpdatePassword" ){
     
-    $current = $_POST["current"];
-    $password1 = $_POST["newPass"];
-    $password2 = $_POST["confPass"];
+    $current = filter_var($_POST["current"], FILTER_SANITIZE_STRING);
+    $password1 =filter_var($_POST["newPass"], FILTER_SANITIZE_STRING);
+    $password2 = filter_var($_POST["confPass"], FILTER_SANITIZE_STRING);
 
     $sql_frase=$mysqli->query("Select * from utilizadores WHERE id='" . $_GET["userid"] . "'") or die ("Erro ao selecionar o home.");                                         
                     while($row = $sql_frase->fetch_assoc()){
@@ -50,21 +50,39 @@ if(isset($_POST["updatePassword"]) && $_POST["updatePassword"]=="UpdatePassword"
 
 
 if(isset($_POST["submit"])){
-    $id = $_POST["userid"];
-    $name = $_POST["name"];
-    $sirName = $_POST["sirname"];
-    $username = $_POST["username"];
-    $address = $_POST["address"];
-    $email = $_POST["email"];
-    $role = $_POST["role"];
+    
+    $id = filter_var($_POST["userid"], FILTER_SANITIZE_STRING);
+    $name = filter_var($_POST["name"], FILTER_SANITIZE_STRING);
+    $sirName = filter_var($_POST["sirname"], FILTER_SANITIZE_STRING);
+    $username = filter_var($_POST["username"], FILTER_SANITIZE_STRING);
+    $address = filter_var($_POST["address"], FILTER_SANITIZE_STRING);
+    $email = filter_var($_POST["email"], FILTER_SANITIZE_EMAIL);
+    $role = filter_var($_POST["role"], FILTER_SANITIZE_INT);
     $boolImage = TRUE;
 
 
     if (count($_FILES) > 0 && !empty($_FILES)) {
-        if (is_uploaded_file($_FILES['file']['tmp_name'])) {
-            $imageData = addslashes(file_get_contents($_FILES['file']['tmp_name']));
-            $imageProperties = getimageSize($_FILES['file']['tmp_name']);
-        }
+        $filepath = $_FILES['file']['tmp_name'];
+        $fileSize = filesize($filepath);
+
+                    if ($fileSize === 0) {
+                        if ($fileSize > 3145728) {
+                            if (is_uploaded_file($_FILES['file']['tmp_name'])) {
+                                $imageData = addslashes(file_get_contents($_FILES['file']['tmp_name']));
+                                $imageProperties = getimageSize($_FILES['file']['tmp_name']);
+                            }
+                            else {
+                                echo "<meta http-equiv=refresh content='0; url=index.php?page=2&userid=".$id."&message=7'>";exit;	
+                            }
+                        }
+                        else {
+                            echo "<meta http-equiv=refresh content='0; url=index.php?page=2&userid=".$id."&message=7'>";exit;	
+                        }
+                    }
+                        
+                    else {
+                        echo "<meta http-equiv=refresh content='0; url=index.php?page=2&userid=".$id."&message=7'>";exit;	
+                    }
         else {
             $boolImage = FALSE;
     }
@@ -202,7 +220,7 @@ if(isset($_POST["submit"])){
                                                 </div>
                                                 
                                                 <div class="col-6 col-md-4">
-                                                    <input type="file" id="file-multiple-input" name="file" multiple="" class="form-control-file">
+                                                    <input type="file" id="file-multiple-input" name="file" accept="image/png, image/jpeg" class="form-control-file">
                                                     
                                                 </div>
                                                 <div style="width: 70px; height: 70px"><?php

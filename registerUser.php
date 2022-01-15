@@ -4,19 +4,30 @@ require ("bd.php");
 
 if(isset($_POST["submit"])){
     echo "BBBBB";
-$nome = $_POST["first"];
-$sirName = $_POST["last"];
-$username = $_POST["username"];
-$email = $_POST["email"];
-$password1 = $_POST["password"];
-$password2 = $_POST["confPassword"];
+$nome = filter_var($_POST["first"], FILTER_SANITIZE_STRING);
+$sirName = filter_var($_POST["last"], FILTER_SANITIZE_STRING);
+$username = filter_var($_POST["name"], FILTER_SANITIZE_STRING);
+$email = filter_var($_POST["name"], FILTER_SANITIZE_STRING);
+$password1 = filter_var($_POST["password"], FILTER_SANITIZE_STRING);
+$password2 = filter_var($_POST["confPassword"], FILTER_SANITIZE_STRING);
 $role = "User";
 
 if (count($_FILES) > 0) {
-    if (is_uploaded_file($_FILES['file']['tmp_name'])) {
-        $imageData = addslashes(file_get_contents($_FILES['file']['tmp_name']));
-        $imageProperties = getimageSize($_FILES['file']['tmp_name']);
-    }
+    $filepath = $_FILES['file']['tmp_name'];
+        $fileSize = filesize($filepath);
+
+        if ($fileSize === 0) {
+            if ($fileSize > 3145728) {
+                if (is_uploaded_file($_FILES['file']['tmp_name'])) {
+                    $imageData = addslashes(file_get_contents($_FILES['file']['tmp_name']));
+                    $imageProperties = getimageSize($_FILES['file']['tmp_name']);
+                }
+            else {
+                echo "<meta http-equiv=refresh content='0; url=register.php?message=7'>";exit;
+            }
+        else {
+            echo "<meta http-equiv=refresh content='0; url=register.php?message=7'>";exit;
+        }
     else {
         echo "<meta http-equiv=refresh content='0; url=register.php?message=7'>";exit;
     }

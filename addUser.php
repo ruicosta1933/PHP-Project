@@ -2,20 +2,35 @@
 require("bd.php");
 if(isset($_POST["submit"])){
 
-    $nome = $_POST["name"];
-    $sirName = $_POST["sirname"];
-    $username = $_POST["username"];
-    $address = $_POST["address"];
-    $email = $_POST["email"];
-    $password1 = $_POST["password1"];
-    $password2 = $_POST["password2"];
-    $role = $_POST["role"];
+    $nome = filter_var($_POST["name"], FILTER_SANITIZE_STRING);
+    $sirName = filter_var($_POST["sirName"], FILTER_SANITIZE_STRING);
+    $username = filter_var($_POST["username"], FILTER_SANITIZE_STRING);
+    $address = filter_var($_POST["address"], FILTER_SANITIZE_STRING);
+    $email = filter_var($_POST["email"], FILTER_SANITIZE_EMAIL);
+    $password1 = filter_var($_POST["password1"], FILTER_SANITIZE_STRING);
+    $password2 = filter_var($_POST["password2"], FILTER_SANITIZE_STRING);
+    $role = filter_var($_POST["role"], FILTER_SANITIZE_INT);
     
 
     if (count($_FILES) > 0) {
-        if (is_uploaded_file($_FILES['file']['tmp_name'])) {
-            $imageData = addslashes(file_get_contents($_FILES['file']['tmp_name']));
-            $imageProperties = getimageSize($_FILES['file']['tmp_name']);
+
+        $filepath = $_FILES['file']['tmp_name'];
+        $fileSize = filesize($filepath);
+
+                    if ($fileSize === 0) {
+                        if ($fileSize > 3145728) {
+
+                    if (is_uploaded_file($_FILES['file']['tmp_name'])) {
+                        $imageData = addslashes(file_get_contents($_FILES['file']['tmp_name']));
+                        $imageProperties = getimageSize($_FILES['file']['tmp_name']);
+                    }
+                else {
+                    echo "<meta http-equiv=refresh content='0; url=index.php?page=3&message=7'>";exit;
+                }
+            }
+            else {
+                echo "<meta http-equiv=refresh content='0; url=index.php?page=3&message=7'>";exit;
+            }
         }
         else {
             echo "<meta http-equiv=refresh content='0; url=index.php?page=3&message=7'>";exit;
@@ -143,7 +158,7 @@ if(isset($_POST["submit"])){
                                                 <div class="input-group-addon">Image / Avatar</div>
                                                 </div>
                                                 <div class="col-6 col-md-4">
-                                                    <input type="file" id="file-multiple-input" name="file" multiple="" class="form-control-file">
+                                                    <input type="file" id="file-multiple-input" accept="image/png, image/jpeg" name="file" class="form-control-file">
                                                 </div>
                                                 <div class="input-group-addon">
                                                         <i class="fa fa-images"></i>

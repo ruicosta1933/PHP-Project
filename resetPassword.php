@@ -5,8 +5,8 @@ if(isset($_POST['submit']) && isset($_GET['key']) && isset($_GET['reset']))
 
 
   $id=$_POST['id'];
-  $password1=$_POST['password'];
-  $password2=$_POST['password2'];
+  $password1=filter_var($_POST["password"], FILTER_SANITIZE_STRING);
+  $password2=filter_var($_POST["password2"], FILTER_SANITIZE_STRING);
 
     
    $pattern_pass='/^(?=.*[0-9])(?=.*[A-Z])(?=.*[a-z]).{8,20}$/';

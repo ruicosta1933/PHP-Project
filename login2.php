@@ -8,8 +8,6 @@ if(isset($_COOKIE["username"]) && isset($_COOKIE["password"])) {
 
 $username = $_COOKIE["username"];
 $pass = $_COOKIE["password"];
-// A variavel $result pega as varias $username e $pass, faz uma
-//pesquisa na tabela de usuarios
 
 setcookie("username","");
     setcookie("password","");

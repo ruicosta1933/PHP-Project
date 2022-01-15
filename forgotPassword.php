@@ -17,7 +17,7 @@ require("bd.php");
             }
             
 
-            $link =  '<a href="http://localhost/admin/resetPass.php?key='.$email.'&reset='.$pass.'"
+            $link =  '<a href="http://localhost/loja/admin/resetPass.php?key='.$email.'&reset='.$pass.'"
             style="background:#20e277;text-decoration:none !important; font-weight:500; margin-top:35px; color:#fff;text-transform:uppercase; font-size:14px;padding:10px 24px;display:inline-block;border-radius:50px;">Reset
             Password</a>';
 

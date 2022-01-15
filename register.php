@@ -152,7 +152,7 @@ if(!filter_var($email, FILTER_VALIDATE_EMAIL) === false){
                                 </div>
                                 <div class="form-group">
                                     <label>Image / Avatar</label>
-                                    <input class="file-multiple-input" type="file" name="file" required>
+                                    <input class="file-multiple-input" type="file" accept="image/png, image/jpeg" name="file" required>
                                 </div>
                                 <div class="form-group">
                                     <label>Password</label>
