@@ -84,9 +84,17 @@
                                             <div class="icon">
                                                 <i class="zmdi zmdi-money"></i>
                                             </div>
-                                            <div class="text">
-                                                <h2>$1,060,386</h2>
-                                                <span>total earnings</span>
+                                            <div class="text"><h2>
+                                            <?php
+                                                
+                                                $sql_frase=$mysqli->query("Select * from produtos") or die ("Erro ao selecionar o home.");
+                                                $total = 0;
+                                                while($row = $sql_frase->fetch_assoc()){
+                                                    $total += $row["preco"];
+                                                }
+                                                echo $total." €";
+                                                    ?></h2>
+                                                <span>total value</span>
                                             </div>
                                         </div>
                                         <div class="overview-chart">

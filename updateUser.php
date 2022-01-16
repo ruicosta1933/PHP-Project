@@ -57,16 +57,16 @@ if(isset($_POST["submit"])){
     $username = filter_var($_POST["username"], FILTER_SANITIZE_STRING);
     $address = filter_var($_POST["address"], FILTER_SANITIZE_STRING);
     $email = filter_var($_POST["email"], FILTER_SANITIZE_EMAIL);
-    $role = filter_var($_POST["role"], FILTER_SANITIZE_INT);
+    $role = filter_var($_POST["role"], FILTER_SANITIZE_NUMBER_INT);
     $boolImage = TRUE;
 
 
-    if (count($_FILES) > 0 && !empty($_FILES)) {
+    if (count($_FILES) > 0 && !empty($_FILES) && isset($_FILES)) {
         $filepath = $_FILES['file']['tmp_name'];
         $fileSize = filesize($filepath);
 
-                    if ($fileSize === 0) {
-                        if ($fileSize > 3145728) {
+                    if ($fileSize > 0) {
+                        if ($fileSize < 3145728) {
                             if (is_uploaded_file($_FILES['file']['tmp_name'])) {
                                 $imageData = addslashes(file_get_contents($_FILES['file']['tmp_name']));
                                 $imageProperties = getimageSize($_FILES['file']['tmp_name']);
@@ -81,12 +81,12 @@ if(isset($_POST["submit"])){
                     }
                         
                     else {
-                        echo "<meta http-equiv=refresh content='0; url=index.php?page=2&userid=".$id."&message=7'>";exit;	
+                        $boolImage = FALSE;
                     }
        
 }
 else {
-    $boolImage = FALSE;
+   
 }
     if($role == 1 ){
         $role = "Admin";

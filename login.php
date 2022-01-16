@@ -50,7 +50,9 @@
                             </a>
                         </div>
                         <div class="login-form">
+                            <?php require("messages.php");?>
                             <form action="login2.php" method="post">
+
                                 <div class="form-group">
                                     <label>Username</label>
                                     <input class="au-input au-input--full" type="text" name="username" value="<?php if(isset($_COOKIE["username"])) { echo $_COOKIE["username"]; } ?>" placeholder="Username">

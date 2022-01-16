@@ -1,7 +1,5 @@
 <?php 
-
-
-    if(isset($_GET["userid"])){
+    if(isset($_GET["userid"]) && !isset($_GET["block"])){
 
         $sql = "DELETE FROM utilizadores WHERE id='" . $_GET["userid"] . "'";
 
@@ -12,13 +10,33 @@
             }
 
     }
+    if(isset($_GET["block"])){
+        $id=$_GET["userid"];
+            if($_GET["block"] == 1){
+                $sql = "UPDATE utilizadores SET ativo=0 WHERE id='".$id."'";
 
-?>
-                      
-                      
-                      
-                      
-                      
+                if ($mysqli->query($sql) === TRUE) {
+
+                    echo "<meta http-equiv=refresh content='0; url=index.php?page=1&message=16'>";exit;	
+                    } else {
+                        echo "<meta http-equiv=refresh content='0; url=index.php?page=1&message=7'>";exit;	
+                    }
+                    
+            }
+                else if($_GET["block"] == 0){
+                    $sql = "UPDATE utilizadores SET ativo=1 WHERE id='".$id."'";
+
+                    if ($mysqli->query($sql) === TRUE) {
+                        echo "<meta http-equiv=refresh content='0; url=index.php?page=1&message=15'>";exit;	
+                        } else {
+                            echo "<meta http-equiv=refresh content='0; url=index.php?page=1&message=7'>";exit;	
+                        }
+                        }
+        
+
+    }
+
+?>   
                       <div class="user-data">
                                     <h3 class="title-3 m-b-30">
                                         <i class="zmdi zmdi-account-calendar"></i>user data</h3>
@@ -67,11 +85,6 @@
                                                         <th></th>
                                                     </tr>
                                                 </thead>
-
-
-
-
-
                                                 <tbody>
                                                     <style>
 
@@ -87,11 +100,6 @@
                                             $sql_frase=$mysqli->query("Select * from utilizadores") or die ("Erro ao selecionar o home.");
                                                 
                                                     while($row = $sql_frase->fetch_assoc()){
-                                                   
-
-                                                            
-                                                  
-                                                    
                                                     ?>
                                                     
                                                     <tr class="tr-shadow">
@@ -133,22 +141,36 @@
                                                                         <i class="zmdi zmdi-edit"></i>
                                                                     </button>
                                                                  </a>
+                                                                 <?php  
+                                                            
+                                                            if($row['ativo'] == 1 && $row['tipo'] == "User"){
+                                                            ?>
+                                                                <a href="?page=1&userid=<?php echo $row["id"]; ?>&block=1">
 
+                                                                   <button class="item" onclick="return confirm('Are you sure you want to Block?');"  data-toggle="tooltip" data-placement="top" title="Block">
+                                                                        <i class="zmdi zmdi-eye"></i>
+                                                                    </button>
+                                                                </a>
+                                                                <?php } 
+                                                            else if ($row['ativo'] == 0 && $row['tipo'] == "User") {
+                                                            ?>
+                                                            <a href="?page=1&userid=<?php echo $row["id"]; ?>&block=0">
+                                                            <button class="item" onclick="return confirm('Are you sure you want to unBlock?');"  data-toggle="tooltip" data-placement="top" title="Unblock">
+                                                                <i class="zmdi zmdi-eye-off"></i>
+                                                            </button>
+                                                            </a>
+                                                            <?php } ?>
                                                                 <?php  
                                                             
-                                                            if($row['tipo'] == "User"){
-                                                                
-                                                            
-                                                           
+                                                            if($row['tipo'] == "User" ){
                                                             ?>
-
                                                                 <a href="?page=1&userid=<?php echo $row["id"]; ?>">
 
                                                                    <button class="item" onclick="return confirm('Are you sure you want to Delete?');"  data-toggle="tooltip" data-placement="top" title="Delete">
                                                                         <i class="zmdi zmdi-delete"></i>
                                                                     </button>
                                                                 </a>
-                                                            
+                                                              
                                                                 <?php } ?>
                                                             </div>
                                                         </td>

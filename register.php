@@ -62,7 +62,7 @@ if(!filter_var($email, FILTER_VALIDATE_EMAIL) === false){
 
         else{
 
-            $sql = "INSERT INTO utilizadores (nome, apelido, username, email, pass, salt, tipo, imageType, imageData) VALUES ('".$nome."', '".$sirName."', '".$username."', '".$email."', '".$pass."', '".$salt."', '".$role."', '".$imageProperties['mime']."', '".$imageData."')";
+            $sql = "INSERT INTO utilizadores (nome, apelido, username, email, pass, salt, tipo, imageType, imageData, ativo) VALUES ('".$nome."', '".$sirName."', '".$username."', '".$email."', '".$pass."', '".$salt."', '".$role."', '".$imageProperties['mime']."', '".$imageData."', 1)";
             
             if ($mysqli->query($sql) === TRUE) {
                 echo "<meta http-equiv=refresh content='0; url=register.php?message=14'>";exit;	

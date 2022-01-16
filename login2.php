@@ -5,7 +5,7 @@ date_default_timezone_set('Europe/Lisbon');
 if(isset($_COOKIE["username"]) && isset($_COOKIE["password"])) { 
       
 
-    $log_string = date("Y-m-d")." | ".$username." iniciou sessão às ".date("h:i:s").", através de cookies\n\n============================================================================== \n\n";
+    $log_string = date("Y-m-d")." | ".$_COOKIE["username"]." iniciou sessão às ".date("h:i:s").", através de cookies\n\n============================================================================== \n\n";
     $log_file = "logs.txt";
   
     $handle = fopen($log_file, "a") or die ('Something went wrong !');
@@ -55,6 +55,23 @@ if(mysqli_num_rows($result) > 0 ){
     $_SESSION['tipo'] = $row["tipo"];
     $_SESSION['username'] = $username;
 
+  if($row["ativo"] == "0"){
+    session_unset();
+
+// destroy the session
+session_destroy();
+    $log_string = date("Y-m-d")." | ".$username." tentou iniciar sessão às ".date("h:i:s")." mas esta bloqueado! \n\n============================================================================== \n\n";
+    $log_file = "logs.txt";
+  
+    $handle = fopen($log_file, "a") or die ('Something went wrong !');
+  
+    fwrite($handle, $log_string);
+    fclose($handle);
+
+    echo "<meta http-equiv=refresh content='0; url=../index.php?message=bloqueado'>";exit;
+  }
+
+
   $log_string = date("Y-m-d")." | ".$username." iniciou sessão às ".date("h:i:s")."\n\n============================================================================== \n\n";
   $log_file = "logs.txt";
 
@@ -69,8 +86,7 @@ if(mysqli_num_rows($result) > 0 ){
         header('location:index.php?message=2');
        }
        else{
-       
-        header('location:../loja/index.php?message=LOGOU');
+        header('location:../index.php?message=LOGOU');
        }
     }
     else {

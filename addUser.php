@@ -9,7 +9,7 @@ if(isset($_POST["submit"])){
     $email = filter_var($_POST["email"], FILTER_SANITIZE_EMAIL);
     $password1 = filter_var($_POST["password1"], FILTER_SANITIZE_STRING);
     $password2 = filter_var($_POST["password2"], FILTER_SANITIZE_STRING);
-    $role = filter_var($_POST["role"], FILTER_SANITIZE_INT);
+    $role = filter_var($_POST["role"], FILTER_SANITIZE_NUMBER_INT);
     
 
     if (count($_FILES) > 0) {
@@ -85,7 +85,7 @@ if(isset($_POST["submit"])){
 
             else{
 
-                $sql = "INSERT INTO utilizadores (nome, apelido, username, morada, email, pass, salt, tipo, imageType, imageData) VALUES ('".$nome."', '".$sirName."', '".$username."', '".$address."', '".$email."', '".$pass."', '".$salt."', '".$role."', '".$imageProperties['mime']."', '".$imageData."')";
+                $sql = "INSERT INTO utilizadores (nome, apelido, username, morada, email, pass, salt, tipo, imageType, imageData, ativo) VALUES ('".$nome."', '".$sirName."', '".$username."', '".$address."', '".$email."', '".$pass."', '".$salt."', '".$role."', '".$imageProperties['mime']."', '".$imageData."', 1)";
                 
                 if ($mysqli->query($sql) === TRUE) {
                     echo "<meta http-equiv=refresh content='0; url=index.php?page=3&message=6'>";exit;	

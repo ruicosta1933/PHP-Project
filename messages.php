@@ -61,19 +61,30 @@ Email already used. Please, try another one.
     case 6:
         echo '<div class="sufee-alert alert with-close alert-success alert-dismissible fade show">
         <span class="badge badge-pill badge-success">Success</span>
-        New user created successfully.
+        Record created successfully.
         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
             <span aria-hidden="true">&times;</span>
         </button>
     </div>';
-
-    $log_string = date("Y-m-d")." | ".$_SESSION["username"]." adicionou um utilizador às ".date("h:i:s")."\n\n============================================================================== \n\n";
-    $log_file = "logs.txt";
-
-    $handle = fopen($log_file, "a") or die ('Something went wrong !');
-
-    fwrite($handle, $log_string);
-    fclose($handle);
+    if(isset($_SESSION["username"])){
+        $log_string = date("Y-m-d")." | ".$_SESSION["username"]." adicionou um utilizador às ".date("h:i:s")."\n\n============================================================================== \n\n";
+        $log_file = "logs.txt";
+    
+        $handle = fopen($log_file, "a") or die ('Something went wrong !');
+    
+        fwrite($handle, $log_string);
+        fclose($handle);
+    }
+    else{
+        $log_string = date("Y-m-d")." | Novo utilizador criou conta na plataforma às ".date("h:i:s")."\n\n============================================================================== \n\n";
+        $log_file = "logs.txt";
+    
+        $handle = fopen($log_file, "a") or die ('Something went wrong !');
+    
+        fwrite($handle, $log_string);
+        fclose($handle);
+    }
+    
 
     break;
 
@@ -174,6 +185,24 @@ Image field is required. Please upload an image.
         echo '<div class="sufee-alert alert with-close alert-success alert-dismissible fade show">
         <span class="badge badge-pill badge-success">Success</span>
         You have been registered successfuly.
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>';
+    break;
+    case 15:
+        echo '<div class="sufee-alert alert with-close alert-success alert-dismissible fade show">
+        <span class="badge badge-pill badge-success">Success</span>
+        User is now unblocked.
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>';
+    break;
+    case 16:
+        echo ' <div class="sufee-alert alert with-close alert-warning alert-dismissible fade show">
+        <span class="badge badge-pill badge-warning">Success</span>
+        User is now blocked.
         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
             <span aria-hidden="true">&times;</span>
         </button>
