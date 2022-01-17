@@ -31,17 +31,10 @@ if(isset($_POST["submit"])){
   
 session_start();
 
-$username = $_POST['username'];
-$pass = $_POST['password'];
-// A variavel $result pega as varias $login e $senha, faz uma
-//pesquisa na tabela de usuarios
-
+$username = filter_var($_POST["username"], FILTER_SANITIZE_STRING);
+$pass = filter_var($_POST["password"], FILTER_SANITIZE_STRING);
 
 $sql = "SELECT * FROM utilizadores WHERE username = '".$username."'";
-
-
-
-
 $result = mysqli_query($mysqli, $sql);
 
 if(mysqli_num_rows($result) > 0 ){
@@ -86,12 +79,12 @@ session_destroy();
         header('location:index.php?message=2');
        }
        else{
-        header('location:../index.php?message=LOGOU');
+        header('location:../index.php?message=5');
        }
     }
     else {
       //AVISO - PALAVRA PASS ERRADA
-      header('location:LOGIN.php?message=PASSerrada');
+      header('location:../index.php?message=6');
     }
 }
 

@@ -60,44 +60,26 @@ if(isset($_POST["submit"])){
     $role = filter_var($_POST["role"], FILTER_SANITIZE_NUMBER_INT);
     $boolImage = TRUE;
 
-
     if (count($_FILES) > 0 && !empty($_FILES) && isset($_FILES)) {
         $filepath = $_FILES['file']['tmp_name'];
         $fileSize = filesize($filepath);
-
                     if ($fileSize > 0) {
                         if ($fileSize < 3145728) {
                             if (is_uploaded_file($_FILES['file']['tmp_name'])) {
                                 $imageData = addslashes(file_get_contents($_FILES['file']['tmp_name']));
                                 $imageProperties = getimageSize($_FILES['file']['tmp_name']);
                             }
-                            else {
-                                echo "<meta http-equiv=refresh content='0; url=index.php?page=2&userid=".$id."&message=7'>";exit;	
-                            }
+                            else { echo "<meta http-equiv=refresh content='0; url=index.php?page=2&userid=".$id."&message=7'>";exit;	 }
                         }
-                        else {
-                            echo "<meta http-equiv=refresh content='0; url=index.php?page=2&userid=".$id."&message=7'>";exit;	
-                        }
+                        else { echo "<meta http-equiv=refresh content='0; url=index.php?page=2&userid=".$id."&message=7'>";exit;	  }
                     }
-                        
-                    else {
-                        $boolImage = FALSE;
-                    }
-       
+                    else {   $boolImage = FALSE;}
 }
-else {
-   
-}
-    if($role == 1 ){
-        $role = "Admin";
-    } else if($role == 2){
-        $role = "User";
-    }
-    else{
-        echo "<meta http-equiv=refresh content='0; url=index.php?page=2&message=3'>";exit;
-    }
- 
-   if(!filter_var($email, FILTER_VALIDATE_EMAIL) === FALSE){
+    if($role == 1 ){ $role = "Admin"; } 
+    else if($role == 2){ $role = "User"; }
+    else{ echo "<meta http-equiv=refresh content='0; url=index.php?page=2&message=3'>";exit; }
+
+    if(!filter_var($email, FILTER_VALIDATE_EMAIL) === FALSE){
 
             $sql_u = "SELECT * FROM utilizadores WHERE username='$username' and id not in ('$id')";
             $sql_e = "SELECT * FROM utilizadores WHERE username='$email' and id not in ('$id')";
@@ -110,12 +92,7 @@ else {
             } else if(mysqli_num_rows($res_e) > 0){
                 echo "<meta http-equiv=refresh content='0; url=index.php?page=2&userid=".$id."&message=5'>";exit;
             }
-          
-
-            
-
             else if($boolImage == TRUE && isset($imageProperties) && isset($imageData)){
-                echo "AAAAAAAA";
                 $sql = "UPDATE utilizadores SET nome='".$name."', apelido='".$sirName."', username='".$username."', morada='".$address."', email='".$email."', tipo='".$role."', imageType='".$imageProperties['mime']."', imageData='".$imageData."' WHERE id='".$id."'";
 
                 if ($mysqli->query($sql) === TRUE) {
@@ -123,9 +100,7 @@ else {
                 } else {
                     echo "<meta http-equiv=refresh content='0; url=index.php?page=2&userid=".$id."&message=7'>";exit;	
                 }
-    
                 $mysqli->close();
-
             }
 
             else if ($boolImage == FALSE){
@@ -140,16 +115,6 @@ else {
                 
                 $mysqli->close();
             }
-            else {
-                if($boolImage == FALSE){
-                    echo "FALSE<br>";
-                }
-                else if($boolImage == TRUE){
-                    echo "true<br>";
-                }
-                echo $email." - ".$username." - ".$id." - ".mysqli_num_rows($res_u);exit;	
-            }
-
    }
 }
 

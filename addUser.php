@@ -17,13 +17,11 @@ if(isset($_POST["submit"])){
         $filepath = $_FILES['file']['tmp_name'];
         $fileSize = filesize($filepath);
 
-                    if ($fileSize === 0) {
-                        if ($fileSize > 3145728) {
-
+                if ($fileSize > 0 && $fileSize < 3145728) {
                     if (is_uploaded_file($_FILES['file']['tmp_name'])) {
                         $imageData = addslashes(file_get_contents($_FILES['file']['tmp_name']));
                         $imageProperties = getimageSize($_FILES['file']['tmp_name']);
-                    }
+                }
                 else {
                     echo "<meta http-equiv=refresh content='0; url=index.php?page=3&message=7'>";exit;
                 }
@@ -35,10 +33,6 @@ if(isset($_POST["submit"])){
         else {
             echo "<meta http-equiv=refresh content='0; url=index.php?page=3&message=7'>";exit;
         }
-    }
-    else {
-        echo "<meta http-equiv=refresh content='0; url=index.php?page=3&message=10'>";exit;
-    }
 
 
     if($role == 1 ){

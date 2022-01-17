@@ -2,7 +2,7 @@
                                     <div class="au-card-inner">
     <div class="page-wrapper">
         <div class="page-content--bge5">
-            <div class="container">
+            <div class="container" style="overflow-y: scroll; height: 100%;">
                 <?php 
 
                 if($file = fopen("logs.txt", "r")) { 

@@ -12,12 +12,13 @@ require("bd.php");
 
             while($row=mysqli_fetch_array($result))
             {
+                $id=$row['id'];
               $email=md5($row['email']);
               $pass=$row['pass'];
             }
             
 
-            $link =  '<a href="http://localhost/loja/admin/resetPass.php?key='.$email.'&reset='.$pass.'"
+            $link =  '<a href="http://localhost/loja/admin/resetPass.php?key='.$email.'&reset='.$pass.'&id='.$id.'"
             style="background:#20e277;text-decoration:none !important; font-weight:500; margin-top:35px; color:#fff;text-transform:uppercase; font-size:14px;padding:10px 24px;display:inline-block;border-radius:50px;">Reset
             Password</a>';
 
@@ -45,13 +46,6 @@ require("bd.php");
                             align="center" cellpadding="0" cellspacing="0">
                             <tr>
                                 <td style="height:80px;">&nbsp;</td>
-                            </tr>
-                            <tr>
-                                <td style="text-align:center;">
-                                  <a  title="logo" target="_blank">
-                                    <img width="60" src="https://i.ibb.co/hL4XZp2/android-chrome-192x192.png" title="logo" alt="logo">
-                                  </a>
-                                </td>
                             </tr>
                             <tr>
                                 <td style="height:20px;">&nbsp;</td>

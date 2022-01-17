@@ -10,8 +10,8 @@ if(isset($_POST['submit']) && isset($_GET['key']) && isset($_GET['reset']))
 
     
    $pattern_pass='/^(?=.*[0-9])(?=.*[A-Z])(?=.*[a-z]).{8,20}$/';
-   $time = time();
-   $salt = md5($time);
+ 
+   $salt = md5(time());
 
    if($password1 == $password2){
        if(preg_match($pattern_pass, $password1)){
@@ -25,26 +25,17 @@ if(isset($_POST['submit']) && isset($_GET['key']) && isset($_GET['reset']))
         echo "<meta http-equiv=refresh content='0; url=resetPass.php?message=2'>";exit;
     }
 
-
-
- 
    $pass = $Fpassword.$salt;
    
-
    require("bd.php");
 
-
-   $select=mysqli_query($mysqli, "UPDATE utilizadores set pass='".$pass."', salt='".$salt."' where id='".$id."'");
-
-
-   if ($mysqli->query($select) === TRUE) {
-    echo "<meta http-equiv=refresh content='0; url=login.php?message=6'>";exit;	
+   $sql = "UPDATE utilizadores set pass='".$pass."', salt='".$salt."' where id='".$id."'";
+       
+   if ($mysqli->query($sql) === TRUE) {
+ echo "<meta http-equiv=refresh content='0; url=login.php?message=11'>";exit;	
     } else {
-        echo "<meta http-equiv=refresh content='0; url=login.php?message=7'>";exit;	
+         echo "<meta http-equiv=refresh content='0; url=login.php?message=7'>";exit;	
     }
-
- 
-
 
 }
 

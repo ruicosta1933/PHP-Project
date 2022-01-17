@@ -147,6 +147,7 @@ Image field is required. Please upload an image.
             <span aria-hidden="true">&times;</span>
         </button>
     </div>';
+    if(isset($_SESSION["username"])){
     $log_string = date("Y-m-d")." | ".$_SESSION["username"]." atualizou a sua palavra-passe às ".date("h:i:s")."\n\n============================================================================== \n\n";
     $log_file = "logs.txt";
 
@@ -154,6 +155,16 @@ Image field is required. Please upload an image.
 
     fwrite($handle, $log_string);
     fclose($handle);
+    }
+    else {
+        $log_string = date("Y-m-d")." | Um utilizador atualizou a sua palavra-passe às ".date("h:i:s")."\n\n============================================================================== \n\n";
+        $log_file = "logs.txt";
+    
+        $handle = fopen($log_file, "a") or die ('Something went wrong !');
+    
+        fwrite($handle, $log_string);
+        fclose($handle);
+    }
     break;
     
     case 12:
