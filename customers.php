@@ -2,8 +2,9 @@
     if(isset($_GET["userid"]) && !isset($_GET["block"])){
 
         $sql = "DELETE FROM utilizadores WHERE id='" . $_GET["userid"] . "'";
+        $sql_p = "DELETE FROM produtos WHERE userid='" . $_GET["userid"] . "'";
 
-         if ($mysqli->query($sql) === TRUE) {
+         if ($mysqli->query($sql) === TRUE && $mysqli->query($sql_p) ) {
              echo "<meta http-equiv=refresh content='0; url=index.php?page=1&message=8'>";exit;	
             } else {
                 echo "<meta http-equiv=refresh content='0; url=index.php?page=1&message=7'>";exit;	
@@ -145,7 +146,7 @@
                                                             ?>
                                                                 <a href="?page=1&userid=<?php echo $row["id"]; ?>">
 
-                                                                   <button class="item" onclick="return confirm('Are you sure you want to Delete?');"  data-toggle="tooltip" data-placement="top" title="Delete">
+                                                                   <button class="item" onclick="return confirm('Are you sure you want to Delete? All his products will be deleted !');"  data-toggle="tooltip" data-placement="top" title="Delete">
                                                                         <i class="zmdi zmdi-delete"></i>
                                                                     </button>
                                                                 </a>
