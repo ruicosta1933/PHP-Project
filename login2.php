@@ -79,12 +79,16 @@ session_destroy();
         header('location:index.php?message=2');
        }
        else{
-        header('location:../index.php?message=5');
+        header('location:../index.php');
        }
     }
     else {
       //AVISO - PALAVRA PASS ERRADA
-      header('location:../index.php?message=6');
+      session_unset();
+
+// destroy the session
+session_destroy();
+      header('location:login.php?message=7');
     }
 }
 
